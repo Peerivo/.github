@@ -144,24 +144,6 @@ merge
 
 Unreviewed changes are not merged directly into `main`.
 
-## Projects
-
-Some of the systems being developed across Peerivo include:
-
-* Mercy
-* Living Menaion
-* Symphony
-* AI Constitution
-* IronGate
-* Peerivo Network
-* Agent Factory
-* Agent Manager
-* Workbench
-* Gateway
-* Peerivo Learning
-* Geo
-* Origin
-
 The ecosystem is evolving, and these projects increasingly share common protocols for identity, contracts, evidence, approvals and verification.
 
 ## Mission
