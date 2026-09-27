@@ -16,7 +16,7 @@ Use this baseline when creating or repairing Peerivo project CI.
 
 ```yaml
 concurrency:
-  group: peerivo-ci-${{ github.repository }}-${{ github.event.pull_request.number || github.ref }}
+  group: peerivo-ci-${{ github.repository }}-${{ github.event.pull_request.number || github.run_id }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 ```
 
