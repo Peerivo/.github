@@ -1,0 +1,11 @@
+{
+  "name": "Peerivo efficient Node CI",
+  "description": "Cost-aware Peerivo CI: default-branch pushes, PR checks, superseded-run cancellation, pinned actions.",
+  "iconName": "octicon workflow",
+  "categories": [
+    "JavaScript"
+  ],
+  "filePatterns": [
+    "^package\\.json$"
+  ]
+}
