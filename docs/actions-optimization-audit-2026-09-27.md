@@ -7,9 +7,10 @@ Purpose: reduce GitHub-hosted Actions consumption without weakening project CI, 
 | Repository | Change | Status |
 | --- | --- | --- |
 | `Peerivo/factory` | PR-scoped superseded-run cancellation; unique non-PR concurrency; expensive Docker/PostgreSQL jobs depend on fast `check` | merged via #28 |
-| `Peerivo/mercy-platform` | feature branches stop duplicating `push + pull_request`; PR supersession cancellation; Supabase integration waits for fast app gate | PR #103 |
-| `Peerivo/happy` | PR supersession cancellation; non-PR runs unique | PR #3 |
-| `Peerivo/postbazar` | cancel superseded PR runs only; protect every `master` run with unique non-PR group | PR #30 |
+| `Peerivo/mercy-platform` | feature branches stop duplicating `push + pull_request`; PR supersession cancellation; Supabase integration waits for fast app gate | merged via #103 |
+| `Peerivo/happy` | PR supersession cancellation; non-PR runs unique; Connection + Food Rescue root suites share one hosted CI job | merged via #3 and #6 |
+| `Peerivo/postbazar` | cancel superseded PR runs only; protect every `master` run with unique non-PR group | merged via #30 |
+| `Peerivo/publisher` | feature branches stop duplicating `push + pull_request`; PR supersession cancellation; unique non-PR runs | merged via #20 |
 | `Peerivo/.github` | organization baseline + npm lockfile CI template | PR #2 |
 
 ## Highest-value remaining duplicate-trigger fixes
@@ -20,7 +21,6 @@ These repositories currently run CI on feature-branch pushes and also on pull re
 | --- | --- | --- |
 | `Peerivo/flow` | unfiltered `push` + `pull_request` | restrict `push` to default branch; keep PR CI |
 | `Peerivo/marketing` | `push: [main, feat/**, fix/**]` + PR CI | restrict generic CI push to `main`; preserve effect-specific workflows separately |
-| `Peerivo/publisher` | `push: [main, feat/**, fix/**]` + PR CI | restrict generic CI push to `main`; preserve production migration workflow |
 
 Do not patch these on a second branch while their current security/CI PRs are active.
 
@@ -33,12 +33,17 @@ Do not patch these on a second branch while their current security/CI PRs are ac
 - `Peerivo/origin` — current CI-changing PR #8.
 - `Peerivo/marketing` — current CI-changing PR #28.
 - `Peerivo/constitution` — current CI-changing PR #22.
-- `Peerivo/publisher` — current CI-changing PR #18.
 - `Peerivo/network` — current CI-changing PR #59.
 - `Peerivo/ai-ceo` — current CI-changing PR #22.
 - `Peerivo/artcompas` — multiple active CI-changing PRs including #17.
 
 After each conflicting PR settles, create a fresh small branch from actual default branch and apply only the still-relevant cost controls.
+
+## Registered pre-production repositories without observed hosted CI
+
+The current organization workflow inventory did not expose hosted project CI for several registered pre-production consumers, so there is no generic hosted-run duplication to optimize there today. Examples include `Peerivo/auth`, `Peerivo/bitrix`, `Peerivo/carecall`, `Peerivo/critical`, `Peerivo/fabric`, `Peerivo/geo`, `Peerivo/interviewer`, `Peerivo/irongate`, `Peerivo/knowledge`, `Peerivo/learning`, `Peerivo/mira`, `Peerivo/site`, `Peerivo/symphony` and `Peerivo/workbench`.
+
+Do not add CI merely for cost-normalization. If these repositories gain hosted workflows later, start from the organization template and baseline below.
 
 ## Governance / trust-boundary exclusions
 
