@@ -74,3 +74,26 @@ Use `needs: check` (or the project's equivalent fast required gate) before expen
 Codex/Copilot review in private repositories consumes GitHub Actions minutes. Do not request advisory review after every intermediate commit. Prefer one review on a stabilized candidate HEAD, then re-request only when findings caused material code changes that need re-review.
 
 This does not affect mandatory Peerivo Global Review or any project-required CI.
+
+
+## Scheduled workflow optimization candidates
+
+### Reviewer / Global Threat Radar
+
+Current observed topology:
+
+- `Peerivo/reviewer` authoritative Threat Radar worker: scheduled at minute **17** and **47** every hour.
+- `Peerivo/global` Threat Radar guard: scheduled at minute **27** every hour and verifies freshness, authoritative completeness and dispatcher health.
+- The Global Contract requires hourly active-production dependency scanning; the guard accepts authoritative status up to 90 minutes old.
+
+The worker and guard are complementary, not duplicates. However, the second Reviewer worker run each hour is above the hourly contractual cadence.
+
+**Deferred governance optimization:** after the active Reviewer runner/trust-boundary PR settles, evaluate changing the authoritative worker to one run per hour (for example `:17`) while retaining the Global guard shortly afterwards (for example `:27`). This can approximately halve worker executions while keeping an hourly authoritative scan plus independent fail-closed freshness verification.
+
+Do not apply this as an ordinary bulk CI patch: Reviewer/Global schedule changes are governance/security changes and require their normal exact-HEAD review/approval path.
+
+### Known failing scheduled jobs
+
+Do not keep repeatedly failing scheduled workflows merely because they are historical. A recurring failure consumes minutes without producing useful evidence. Repair or explicitly pause it through the owning project's normal workflow.
+
+Current examples are tracked separately where active project PRs already touch the same workflows; do not create overlapping CI branches.
