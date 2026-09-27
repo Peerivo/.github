@@ -1,0 +1,11 @@
+{
+  "name": "Peerivo efficient npm CI",
+  "description": "Cost-aware Peerivo npm CI for repositories with package-lock.json: default-branch pushes, PR checks, superseded-run cancellation, pinned actions.",
+  "iconName": "octicon workflow",
+  "categories": [
+    "JavaScript"
+  ],
+  "filePatterns": [
+    "^package-lock\\.json$"
+  ]
+}
