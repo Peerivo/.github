@@ -9,7 +9,7 @@ permissions:
   contents: read
 
 concurrency:
-  group: peerivo-ci-${{ github.repository }}-${{ github.event.pull_request.number || github.run_id }}
+  group: peerivo-ci-${{ github.repository }}-${{ github.workflow }}-${{ github.event.pull_request.number || github.run_id }}
   cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
